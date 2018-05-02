@@ -1,0 +1,25 @@
+<head>
+  <script
+  src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <script
+  src="http://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h1>Ron Swanson Quote Generator</h1>
+  <p><span id="type">Make a</span> Request</p>
+
+<section class="container">
+  <button onclick="xhrReq()" >XHR</button>
+  <button onclick="fetchReq()">Fetch</button>
+  <button onclick="jqueryReq()">jQuery</button>
+  <button onclick="axiosReq()">Axios</button>
+</section>
+
+<p id="quote">Quote Goes Here...</p>
+
+<script src="scripts.js"></script>
+</body>
