@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSX Exercise</title>
+    <script src="https://unpkg.com/react@16.0.0-rc.2/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.0.0-rc.2/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+    class RandomBox extends React.Component {
+      render() {
+        const fontSize = Math.floor(Math.random() * 40) + 20;
+        const color1 = Math.floor(Math.random() * 256);
+        const color2 = Math.floor(Math.random() * 256);
+        const color3 = Math.floor(Math.random() * 256);
+        const backgroundColor = 'rgb('+color1+', '+color2+', '+color3+')';
+        return(
+        <div style={{
+        width: '50vw',
+        height: '50vh',
+        fontSize: `${fontSize}px`,
+        backgroundColor,
+        }}>
+          <p>Background Color: <br/> {backgroundColor}</p>
+          <hr />
+          <p>Font Size:<br/> {fontSize} px</p>
+        </div>
+        );
+      }
+    }
+
+    ReactDOM.render(<RandomBox />, document.getElementById('app'));
+  </script>
+</body>
+</html>
