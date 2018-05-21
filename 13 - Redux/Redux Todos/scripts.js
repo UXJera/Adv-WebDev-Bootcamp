@@ -24,23 +24,47 @@ function rootReducer(state = initalState, action){
       }
       // add a todo
     case "REMOVE_TODO":
+      let todos = state.todos.filter(val => val.id !== +action.id)
+      return {...state, todos};
       // remove a todo
+      return state;
     default:
       return state;
   }
 }
 
-const store = Redux.createStore(rootReducer)
+const store = Redux.createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 
 $(document).ready(function(){
+  $('ul').on('click', 'button', function(e){
+    store.dispatch({
+      type: "REMOVE_TODO",
+      id: $(e.target).attr('id')
+    })
+    $(e.target).parent().remove()
+  })
     //When form is submitted, add dispatch
     $("form").on("submit", function(e){
       e.preventDefault();
-      let newTask = $("#task").val()
+      let newTask = $("#task").val();
       store.dispatch({
         type: "ADD_TODO",
         task: newTask
+      });
+
+      let currentState = store.getState();
+      let $newLi = $("<li>", {
+        text: newTask
+      });
+      let $newButton = $("<button>", {
+        text: "X",
+        id: currentState.id
       })
+      $newLi.append($newButton)
+      $('#todos').append($newLi)
       $("form").trigger("reset") // Reset form after click
     });
 });
